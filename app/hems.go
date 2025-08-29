@@ -371,8 +371,11 @@ func (c *Cem) printFormat(msgType, format string, args ...interface{}) {
 // filter out UseCase and DetailedDiscovery
 func (c *Cem) filterSpineLogs(msg string) {
 	parts := strings.Split(msg, " ")
+	if len(parts) < 3 {
+		return
+	}
 
-	if parts[0] != "Recv:" && len(parts) < 3 {
+	if parts[0] != "Recv:" {
 		return
 	}
 
